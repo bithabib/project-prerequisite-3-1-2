@@ -2,10 +2,22 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org" xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 <head>
     <title>Spring Security Example</title>
+    <meta charset="UTF-8"/>
 </head>
 <body>
 <h1>User, welcome spring boot security page!</h1>
 
+<!-- Show username -->
+<p>Hello, <span sec:authentication="name"></span>!</p>
+
+<!-- Show roles -->
+<p>Your roles:
+    <span th:each="auth : ${#authentication.authorities}"
+          th:text="${auth.authority}">ROLE_USER</span>
+</p>
+
+<!-- Logout link -->
+<a th:href="@{/logout}">Logout</a>
 
 </body>
 </html>

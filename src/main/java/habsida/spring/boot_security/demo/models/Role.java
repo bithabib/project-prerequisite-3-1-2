@@ -1,8 +1,7 @@
 package habsida.spring.boot_security.demo.models;
 
-import org.springframework.security.core.GrantedAuthority;
-
 import javax.persistence.*;
+import org.springframework.security.core.GrantedAuthority;
 
 @Entity
 @Table(name = "roles")
@@ -12,10 +11,10 @@ public class Role implements GrantedAuthority {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String name; // e.g., ROLE_USER, ROLE_ADMIN
+    @Column(unique = true, nullable = false)
+    private String name;
 
     public Role() {}
-
     public Role(String name) {
         this.name = name;
     }
